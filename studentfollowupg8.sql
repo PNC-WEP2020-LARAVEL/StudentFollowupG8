@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2020 at 05:41 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Mar 10, 2020 at 05:34 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,6 +36,14 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `comment`, `user_id`, `student_id`, `created_at`, `updated_at`) VALUES
+(3, 'Nowday, You are improve a lot', 3, 1, NULL, NULL),
+(4, 'You study hard', 2, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,6 +109,14 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Traing Manager', NULL, NULL),
+(2, 'Tutor', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -112,8 +128,8 @@ CREATE TABLE `students` (
   `firstName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `class` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
+  `class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `student_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `province` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -122,6 +138,14 @@ CREATE TABLE `students` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `firstName`, `lastName`, `gender`, `class`, `year`, `student_id`, `province`, `status`, `picture`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Sreyta', 'Sean', 'Female', 'WEB2020-A', 'second year', '2020-053', 'Takeo', 'Follow up', '', 2, NULL, NULL),
+(2, 'Dara', 'Sean', 'Male', 'WEB2020-B', 'Second year', '2020-013', 'Phnom Penh', 'Follow up', '', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -142,6 +166,15 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `email_verified_at`, `position`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Theara', 'Oun', 'theara.oun@gmail.com', NULL, 'Education Coordinator', 'theara12345', 1, NULL, NULL, NULL),
+(2, 'Rith', 'Nhel', 'rith.nhel@gmail.com', NULL, 'WEB Training', 'rith12345', 2, NULL, NULL, NULL),
+(3, 'Rady', 'Y', 'rady.y@gamil.com', NULL, 'WEB Training', 'rady12345', 2, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -202,7 +235,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -220,19 +253,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

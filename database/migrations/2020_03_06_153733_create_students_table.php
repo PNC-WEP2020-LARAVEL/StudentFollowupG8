@@ -18,8 +18,8 @@ class CreateStudentsTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('gender');
-            $table->integer('class');
-            $table->integer('year');
+            $table->string('class');
+            $table->string('year');
             $table->string('student_id');
             $table->string('province');
             $table->string('status');
