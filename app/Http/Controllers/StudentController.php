@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -15,7 +16,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return view('student.view', compact('students'));
+        return view('home', compact('students'));
     }
 
     /**
@@ -36,7 +37,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find(1);
+        $students = new Student;
+        $students-> firstName = $request->get('firstname');
+        $students-> lastName = $request->get('lastname');
+        $students-> gender = $request->get('gender');
+        $students-> class = $request->get('class');
+        $students-> year = $request->get('year');
+        $students-> student_id = $request->get('student_id');
+        $students-> province = $request->get('province');
+        $students-> status = $request->get('status');
+        $students-> picture = $request->get('img');
+        $students-> user_id = $user->id;
+        $students-> save();
+        return redirect('home');
     }
 
     /**
@@ -47,7 +61,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        
     }
 
     /**
@@ -56,9 +70,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        //
+        $students = Student::find($id);
+        return view('student.edit',compact('students'));
     }
 
     /**

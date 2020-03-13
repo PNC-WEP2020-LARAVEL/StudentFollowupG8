@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Role;
 use App\Comment;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstName','lastName', 'email','position', 'password',
     ];
 
     /**
@@ -46,4 +47,5 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     
+
 }
