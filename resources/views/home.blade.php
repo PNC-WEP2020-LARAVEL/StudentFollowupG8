@@ -31,7 +31,7 @@
                     <td>{{$student->class}}</td>
                     <td>{{$student->status}}</td>
                     <td>
-                        <a href="{{route('home.store', $student->id)}}" class="btn btn-info text-light">Detail</a>
+                        <a href="{{route('details',$student->id)}}" class="btn btn-info text-light">Detail</a>
                         <a href="{{route('home.edit', $student->id)}}" class="btn btn-primary">Edit</a>
                         <form method="post" class="delete_form" action="{{route('home.destroy', $student->id)}}">
                         {{ csrf_field() }}
