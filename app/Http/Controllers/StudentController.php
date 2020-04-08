@@ -123,4 +123,12 @@ class StudentController extends Controller
         $students->delete();
         return redirect('home');
     }
+    // view details of students
+    public function details($id)
+    {
+        // $user = User::find(auth::id());
+        // $viewStudents = $user->students;    
+        $viewStudents = Student::find($id);
+        return view('student.viewdetail', compact('viewStudents'));
+    }
 }

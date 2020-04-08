@@ -19,3 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/home','StudentController');
+
+// viewdetail of student.(by yon)
+Route::get('/details{id}','StudentController@details')->name('details');
