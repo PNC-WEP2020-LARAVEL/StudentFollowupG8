@@ -39,9 +39,9 @@
                    <td><img src="{{asset('images/'.$viewStudents->picture)}}" width="80" style="border-radius: 5px;" height="60" alt="User" /></td>
                    <td>{{$viewStudents->user_id}}</td>
                    <td>
-                       <a href="">view comment</a> |
-                       <a href="">give comment</a>|
-                       a
+                    <a href="{{route('comment', $viewStudents->id)}}">view comment</a> |
+                    <a href="{{route('showForm', $viewStudents->id)}}">give comment</a>
+                       
                    </td>
                  
                </tr>

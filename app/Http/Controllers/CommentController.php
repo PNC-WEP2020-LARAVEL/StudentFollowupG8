@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Student;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -81,5 +82,19 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+//view specific comments.
+    public function comment($id)
+    {
+        $students = Student::find($id);
+        $comment= $students->comments;
+        return view('comment.viewComment', compact('comment')); 
+    }
+    // function to show form comment.
+    public function showForm($id)
+    {
+        $students = Student::find($id);
+        $comment= $students->comments;
+        return view('comment.formOfComment', compact('comment')); 
     }
 }

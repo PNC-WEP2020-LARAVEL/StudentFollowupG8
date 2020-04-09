@@ -20,6 +20,6 @@ class userController extends Controller
          $Users->password=$request->get('password');
          $Users->save();
          return redirect('home');
-       
     }
 }
+

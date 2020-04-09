@@ -131,4 +131,5 @@ class StudentController extends Controller
         $viewStudents = Student::find($id);
         return view('student.viewdetail', compact('viewStudents'));
     }
+    
 }
