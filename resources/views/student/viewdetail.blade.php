@@ -5,47 +5,57 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-11">
-           
-    {{-- view detail of student --}}
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>FirstName</th>
-                    <th>LastName</th>
-                    <th>Gender</th>
-                    <th>Class</th>
-                    <th>Year</th>
-                    <th>Student-ID</th>
-                    <th>Province</th>
-                    <th>Status</th>
-                    <th>Picture</th>
-                    <th>Tutor_id</th>
-                    <th>Comment</th>
-                    
-                </tr>
-               <tr>
-                 
-                   
-                   <td>{{$viewStudents->id}}</td>
-                   <td>{{$viewStudents->firstName}}</td>
-                   <td>{{$viewStudents->lastName}}</td>
-                   <td>{{$viewStudents->gender}}</td>
-                   <td>{{$viewStudents->class}}</td>
-                   <td>{{$viewStudents->year}}</td>
-                   <td>{{$viewStudents->student_id}}</td>
-                   <td>{{$viewStudents->province}}</td>
-                   <td>{{$viewStudents->status}}</td>
-                   {{-- <td>{{$viewStudents->picture}}</td> --}}
-                   <td><img src="{{asset('images/'.$viewStudents->picture)}}" width="80" style="border-radius: 5px;" height="60" alt="User" /></td>
-                   <td>{{$viewStudents->user_id}}</td>
-                   <td>
-                    <a href="{{route('comment', $viewStudents->id)}}">view comment</a> |
-                    <a href="{{route('showForm', $viewStudents->id)}}">give comment</a>
-                       
-                   </td>
-                 
-               </tr>
-            </table>      
+                  <div class="card">
+                      <div class="hovereffect">
+                        <img class="rounded mx-auto d-block img-responsive rounded-circle" src="{{asset('images/'.$viewStudents->picture)}}" width="200" height="250" alt="User">
+                      </div>
+                    <table class="table table-border" style="color:teal;">
+                      <tr>
+                        <th class="header-table">ID</th>
+                        <td class="content">{{$viewStudents->id}} </td>
+                      </tr>
+                      <tr>
+                         <th class="header-table">Full Name</th>
+                        <td class="content">{{$viewStudents->firstName}}​​ {{$viewStudents->lastName}} </td>
+                      </tr>
+                      <tr>
+                         <th class="header-table">Gender</th>
+                        <td class="content">{{$viewStudents->gender}} </td>
+                      </tr>
+                       <tr>
+                         <th class="header-table">Class</th>
+                        <td class="content">{{$viewStudents->class}} </td>
+                      </tr>
+                      <tr>
+                         <th class="header-table">Year</th>
+                        <td class="content">{{$viewStudents->year}} </td>
+                      </tr>
+                       <tr>
+                         <th class="header-table">Student ID</th>
+                        <td class="content">{{$viewStudents->student_id}} </td>
+                      </tr>
+                       <tr>
+                         <th class="header-table">Province</th>
+                        <td class="content">{{$viewStudents->province}} </td>
+                      </tr>
+                      <tr>
+                         <th class="header-table">Status</th>
+                        <td class="content">{{$viewStudents->status}} </td>
+                      </tr>
+                      <tr>
+                         <th class="header-table">Tutor ID</th>
+                        <td class="content">{{$viewStudents->user_id}} </td>
+                      </tr>
+                       <tr>
+                         <th class="header-table">Comment</th>
+                        <td class="content">
+                          <a href="{{route('comment', $viewStudents->id)}}">view comment</a> |
+                          <a href="{{route('showForm', $viewStudents->id)}}">give comment</a>
+                        </td>
+                      </tr>
+                    </table>
+                    <a class="btn btn-success pull-left mb-5" href="">Go Back</a>
+                  </div>
         </div>
     </div>
 </div>
