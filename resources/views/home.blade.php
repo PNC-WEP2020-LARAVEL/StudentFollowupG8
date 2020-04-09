@@ -10,7 +10,7 @@
            
             {{-- add tutor --}}
           
-        <a class="nav-link" href="{{ route('register') }}">{{ __('Add Tutor') }}</a>
+        <a class="nav-link" href="showformTutor">{{ __('Add Tutor') }}</a>
 
         {{-- crud student --}}
         <a href="{{route('home.create')}}">Add</a>
