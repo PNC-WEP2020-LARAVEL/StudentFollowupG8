@@ -33,3 +33,7 @@ Route::resource('/comment','commentController');
 Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
 // route to show form comment
 Route::get('/formcommennt{id}','commentController@showForm')->name('showForm');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

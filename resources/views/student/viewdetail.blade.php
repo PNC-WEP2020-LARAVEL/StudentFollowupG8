@@ -23,9 +23,7 @@
                     <th>Comment</th>
                     
                 </tr>
-               <tr>
-                 
-                   
+               <tr>       
                    <td>{{$viewStudents->id}}</td>
                    <td>{{$viewStudents->firstName}}</td>
                    <td>{{$viewStudents->lastName}}</td>
@@ -39,8 +37,8 @@
                    <td><img src="{{asset('images/'.$viewStudents->picture)}}" width="80" style="border-radius: 5px;" height="60" alt="User" /></td>
                    <td>{{$viewStudents->user_id}}</td>
                    <td>
-                    <a href="{{route('comment', $viewStudents->id)}}">view comment</a> |
-                    <a href="{{route('showForm', $viewStudents->id)}}">give comment</a>
+                    <a href="{{route('comment.index', $viewStudents->id)}}">view comment</a> |
+                    <a href="{{route('comment.create')}}">give comment</a>
                        
                    </td>
                  
