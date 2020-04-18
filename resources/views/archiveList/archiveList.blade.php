@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -10,11 +12,11 @@
            
             {{-- add tutor --}}
           
-        <a  href="showformTutor">{{ __('Add Tutor') }}</a>|
-        {{-- crud student --}}
-        <a href="{{route('home.create')}}">Add Student</a> |
-        <a href="{{route('viewFollowUpList')}}">View Follow up list</a> |
-        <a href="{{route('viewAchiveList')}}">View Achive list</a>
+            <a  href="showformTutor">{{ __('Add Tutor') }}</a>|
+            {{-- crud student --}}
+            <a href="{{route('home.create')}}">Add Student</a> |
+            <a href="{{route('viewFollowUpList')}}">View Follow up list</a> |
+            <h1>These are the achive list student.</h1>
             <table class="table table-bordered">
                 <tr>
                     <th>ID</th>
@@ -26,7 +28,7 @@
                 </tr>
                 @foreach ($students as $student)
                 <tr>
-                    <td>{{$student->id}}</td>
+                    <td>{{$student->student_id}}</td>
                     <td>{{$student->firstName." ".$student->lastName}}</td>
                     <td>{{$student->gender}}</td>
                     <td>{{$student->class}}</td>
@@ -48,7 +50,7 @@
                             </ul>  
                           </div>
                         @endif
-   
+    
                      
                     </td>
                     <td>
@@ -63,7 +65,9 @@
                 </tr>
                 @endforeach
             </table>      
+           
         </div>
     </div>
 </div>
 @endsection
+
