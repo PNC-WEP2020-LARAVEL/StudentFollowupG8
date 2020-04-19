@@ -7,7 +7,7 @@
         <div class="col-md-8">
            
             
-            <form method="POST"action="">
+            <form method="POST"action="{{route('addComment',$students->id)}}">
                 @csrf
              
 

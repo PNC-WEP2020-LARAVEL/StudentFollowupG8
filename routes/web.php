@@ -33,3 +33,14 @@ Route::resource('/comment','commentController');
 Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
 // route to show form comment
 Route::get('/formcommennt{id}','commentController@showForm')->name('showForm');
+// route to add comment
+Route::post('/add{id}','commentController@addComment')->name('addComment');
+
+// route to followUp
+Route::get('/followUp{id}','userController@followUp')->name('followUp');
+// route to achive
+Route::get('/achive{id}','userController@achive')->name('achive');
+// route to viewFollowUpList
+Route::get('/viewFollowUpList','StudentController@viewFollowUpList')->name('viewFollowUpList');
+// route to viewAchiveList
+Route::get('/viewAchiveList','StudentController@viewAchiveList')->name('viewAchiveList');

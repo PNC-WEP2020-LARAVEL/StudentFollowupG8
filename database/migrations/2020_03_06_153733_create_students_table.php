@@ -22,7 +22,8 @@ class CreateStudentsTable extends Migration
             $table->string('year');
             $table->string('student_id');
             $table->string('province');
-            $table->string('status');
+            // $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->mediumText('picture')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')

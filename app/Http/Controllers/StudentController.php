@@ -128,8 +128,21 @@ class StudentController extends Controller
     {
         // $user = User::find(auth::id());
         // $viewStudents = $user->students;    
-        $viewStudents = Student::find($id);
-        return view('student.viewdetail', compact('viewStudents'));
+        $student = Student::find($id);
+        return view('student.viewdetail', compact('student'));
     }
+
+     //function view follow up list
+     public function viewFollowUpList(){
+        $students = Student::where('status',1)->get();
+        return view('followUpList.followUpList',compact('students'));
+    }
+    //function view achive list
+     public function viewAchiveList(){
+        $students = Student::where('status',0)->get();
+        return view('archiveList.archiveList',compact('students'));
+    }
+
+
     
 }

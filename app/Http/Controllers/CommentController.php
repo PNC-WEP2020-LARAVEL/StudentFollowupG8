@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\User;
 use App\Student;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -36,7 +38,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $students = Student::find($id);
+        // $user = User::find(auth::id());
+        // $comment = new \App\Comment();
+        // $comment->comment = $request->get('comment');
+        // $comment->user_id = $user->id;
+        // $comment->student_id=$students->id;
+        // $comment->save();
+
+        // return redirect()->route('comment.viewComment',$students->id);
     }
 
     /**
@@ -94,7 +104,20 @@ class CommentController extends Controller
     public function showForm($id)
     {
         $students = Student::find($id);
-        $comment= $students->comments;
-        return view('comment.formOfComment', compact('comment')); 
+        return view('comment.formOfComment', compact('students')); 
     }
+
+    // function to add comment.
+    public function addComment(Request $request,$id)
+    {
+        $students = Student::find($id);
+        $user = User::find(auth::id());
+        $comment = new \App\Comment();
+        $comment->comment = $request->get('comment');
+        $comment->user_id = $user->id;
+        $comment->student_id=$students->id;
+        $comment->save();
+        return redirect()->route('comment',$students->id);
+    }
+
 }
