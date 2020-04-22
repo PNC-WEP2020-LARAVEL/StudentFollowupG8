@@ -11,7 +11,7 @@
             <a href="{{route('author.viewFollowUpList')}}">Follow Up List</a> |
             <a href="{{route('author.viewAchiveList')}}">Achive List</a> |
             
-             <h3>Follow up list</h3>
+             <h3>under mentor student = {{$countStudents}}</h3>
 
                                     <table class="table table-bordered">
                                         <tr>

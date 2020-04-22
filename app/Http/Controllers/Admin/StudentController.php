@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Student;
 use App\User;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -154,6 +155,11 @@ class StudentController extends Controller
         return redirect('admin/viewFollowUpList');
     }
 
+    public function tutorMentorStudents(){
+        $students = Student::all()->where('user_id', Auth::user()->id);
+        $countStudents = Student::all()->where('user_id', Auth::user()->id)->count();
+        return view('admin.underMantorStudentOfEachTutor')->with(array('students'=>$students,'countStudents'=>$countStudents));
+    }
 
 
 }

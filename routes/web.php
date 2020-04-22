@@ -38,6 +38,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::PUT('addTutorToStudent\{IdOfUser}\{IdOfStudent}','StudentController@addTutorToStudent')->name('addTutorToStudent');
     // route to add comment
     Route::post('/add{id}','commentController@addComment')->name('addComment');
+    //route admin control the student
+    Route::get('/tutorcontrol','StudentController@tutorMentorStudents')->name('tutorControlStudents');
 });
 Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware'=>['auth','author']], function (){
 
@@ -59,6 +61,8 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
      Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
      // route to add comment
     Route::post('/add{id}','commentController@addComment')->name('addComment');
+    //route author control the student
+    Route::get('/tutorcontrol','StudentController@tutorMentorStudents')->name('tutorControlStudents');
 
 });
 

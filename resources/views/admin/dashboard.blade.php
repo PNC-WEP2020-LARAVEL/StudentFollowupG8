@@ -11,7 +11,8 @@
                            <a href="{{route('admin.viewFollowUpList')}}">Follow Up List</a> |
                            <a href="{{route('admin.viewAchiveList')}}">Achive List</a> |
                            <a href="{{route('admin.student.create')}}">add student</a> |
-                            <a href="{{route('admin.user.store')}}">Show Tutors</a>
+                            <a href="{{route('admin.user.store')}}">Show Tutors</a> |
+                            <a href="{{route('admin.tutorControlStudents')}}">Student list mentor</a>
                                     <table class="table table-bordered">
                                         <tr>
                                             <th>FullName</th>
@@ -124,8 +125,13 @@
                                                         @endif
                                                         </p>
                                                         <p>
-                                                            <strong>Tutor_Name:</strong> {{$student->user['first_name']}}.{{$student->user['last_name']}}
-
+                                                          <strong>Tutor_Name:</strong> 
+                                                          @if ($student->user_id == null)
+                                                          Not yet Tutor
+                                                          @else
+                                                          {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                                
+                                                            @endif
                                                         </p>
                                                       </div>
                                                 </div>

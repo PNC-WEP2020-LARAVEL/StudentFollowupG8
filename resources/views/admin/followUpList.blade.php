@@ -143,7 +143,13 @@
                                                       @endif
                                                       </p>
                                                       <p>
-                                                          <strong>Tutor_Name:</strong> {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                          <strong>Tutor_Name:</strong> 
+                                                          @if ($student->user_id == null)
+                                                          Not yet Tutor
+                                                          @else
+                                                          {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                                
+                                                            @endif
 
                                                       </p>
                                                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Author;
 use App\Student;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -99,5 +100,11 @@ class StudentController extends Controller
         $students = Student::where('status',0)->get();
         return view('author.archiveList',compact('students'));
     }
+    public function tutorMentorStudents(){
+        $students = Student::all()->where('user_id', Auth::user()->id);
+        $countStudents = Student::all()->where('user_id', Auth::user()->id)->count();
+        return view('admin.underMantorStudentOfEachTutor')->with(array('students'=>$students,'countStudents'=>$countStudents));
+    }
+
 
 }
