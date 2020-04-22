@@ -7,18 +7,19 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <a href="{{route('admin.dashboard')}}"><h3>Admin Dashboad</h3></a>
+            <a href="{{route('admin.dashboard')}}"><h3> admin Dashboad</h3></a>
             <a href="{{route('admin.viewFollowUpList')}}">Follow Up List</a> |
             <a href="{{route('admin.viewAchiveList')}}">Achive List</a> |
             <a href="{{route('admin.student.create')}}">add student</a> |
              <a href="{{route('admin.user.store')}}">Show Tutors</a>
-             <h3>Achive List</h3>
+             <h3>under mentor students list = {{$countStudents}} </h3>
                            
                                     <table class="table table-bordered">
                                         <tr>
                                             <th>FullName</th>
                                             <th>Gender</th>
                                             <th>Class</th>
+                                            <th>Tutor</th>
                                             <th>Status</th>
                                             <th>Comment</th>
                                             <th>Action</th>
@@ -28,8 +29,18 @@
                                             <td>{{$student->first_name." ".$student->last_name}}</td>
                                             <td>{{$student->gender}}</td>
                                             <td>{{$student->class}}</td>
-                                          
-
+                                            <td>
+                                                @if ($student->user_id == null)
+                                                <div class="form-group p-0">
+                                                <a href="{{route('admin.showPageAddTutor',$student->id)}}">assign tutor</a>
+                                            
+                                                @else
+                                                <a class="text-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">{{$student->User->first_name}}. {{ $student->User->last_name}}</a>                            
+                                                <ul class="dropdown-menu">
+                                                  <a href="{{route('admin.showPageAddTutor',$student->id)}}">Change</a>
+                                                </ul>  
+                                                @endif
+                                            </td>
                                                  <td>
                                                      @if ($student->status == 0)
                                                 <div class="dropdown">
@@ -52,6 +63,7 @@
                                         <a href="{{route('admin.showForm', $student->id)}}">comment</a> |
                                         <a href="{{route('admin.comment',$student->id)}}">view comment</a>
                                     </td>
+                                    
                                     <td>
                                       {{-- <a href="{{route('admin.student.destroy',$student->id)}}">delete</a> | --}}
                                       <a href="{{route('admin.student.edit',$student->id)}}"><span class="material-icons">edit</span></a> 
@@ -131,13 +143,13 @@
                                                       @endif
                                                       </p>
                                                       <p>
-                                                        <strong>Tutor_Name:</strong> 
-                                                        @if ($student->user_id == null)
-                                                        Not yet Tutor
-                                                        @else
-                                                        {{$student->user['first_name']}}.{{$student->user['last_name']}}
-                                                              
-                                                          @endif
+                                                          <strong>Tutor_Name:</strong> 
+                                                          @if ($student->user_id == null)
+                                                          Not yet Tutor
+                                                          @else
+                                                          {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                                
+                                                            @endif
 
                                                       </p>
                                                     </div>
@@ -152,6 +164,7 @@
                                          
 
                                   </td> 
+                                    
                                         </tr>
                                         @endforeach
                                     </table>      

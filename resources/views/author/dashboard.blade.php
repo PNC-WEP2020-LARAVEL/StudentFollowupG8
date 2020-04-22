@@ -11,6 +11,7 @@
             <a href="{{route('author.dashboard')}}"><h3>Tutor Dashboard</h3></a>
             <a href="{{route('author.viewFollowUpList')}}">Follow Up List</a> |
             <a href="{{route('author.viewAchiveList')}}">Achive List</a> |
+            <a href="{{route('author.tutorControlStudents')}}">student under mentors</a>
             
                                     <table class="table table-bordered">
                                         <tr>
@@ -85,7 +86,13 @@
                                                                 @endif
                                                                 </p>
                                                                 <p>
-                                                                    <strong>Tutor_Name:</strong> {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                                  <strong>Tutor_Name:</strong> 
+                                                                  @if ($student->user_id == null)
+                                                                  Not yet Tutor
+                                                                  @else
+                                                                  {{$student->user['first_name']}}.{{$student->user['last_name']}}
+                                                                        
+                                                                    @endif
         
                                                                 </p>
                                                               </div>
