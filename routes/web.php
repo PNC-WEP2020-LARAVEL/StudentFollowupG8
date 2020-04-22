@@ -1,46 +1,65 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+    Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/home','StudentController');
+Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function (){
 
-// route to show form tutor
-Route::get('/showformTutor','userController@showFormTotur');
-// route to add tutor
-Route::post('/addTotur','userController@addTotur')->name('addTotur');
+    Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('student','StudentController');
+    // route to followUp
+    Route::get('/followUp{id}','StudentController@followUp')->name('followUp');
+    // route to achive
+    Route::get('/achive{id}','StudentController@achive')->name('achive');
+    //resource controller comment
+    Route::resource('/comment','commentController');
+    // route to show form comment
+    Route::get('/formcommennt{id}','commentController@showForm')->name('showForm');
+    // route for viewdetailcomment
+    Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
+    // viewdetail of student.
+    // Route::get('/details{id}','StudentController@details')->name('details');
+    // route to viewFollowUpList
+    Route::get('/viewFollowUpList','StudentController@viewFollowUpList')->name('viewFollowUpList');
+    // route to viewAchiveList
+    Route::get('/viewAchiveList','StudentController@viewAchiveList')->name('viewAchiveList');
+    //route resource controller 
+    Route::resource('/user','UserController');
+    // show the page add of users
+    Route::get('showPageAddTutor\{id}', 'UserController@showPageAddTutor')->name('showPageAddTutor');
+    //assign tutor to student
+    Route::PUT('addTutorToStudent\{IdOfUser}\{IdOfStudent}','StudentController@addTutorToStudent')->name('addTutorToStudent');
+    // route to add comment
+    Route::post('/add{id}','commentController@addComment')->name('addComment');
+});
+Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware'=>['auth','author']], function (){
 
-// viewdetail of student.
-Route::get('/details{id}','StudentController@details')->name('details');
-//resource controller comment
-Route::resource('/comment','commentController');
-// route for viewdetailcomment
-Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
-// route to show form comment
-Route::get('/formcommennt{id}','commentController@showForm')->name('showForm');
-// route to add comment
-Route::post('/add{id}','commentController@addComment')->name('addComment');
+    Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::resource('student','StudentController');
+    // route for viewdetailcomment
+     Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
+    // viewdetail of student.
+    Route::get('/details{id}','StudentController@details')->name('details');
+      // route to viewFollowUpList
+      Route::get('/viewFollowUpList','StudentController@viewFollowUpList')->name('viewFollowUpList');
+      // route to viewAchiveList
+      Route::get('/viewAchiveList','StudentController@viewAchiveList')->name('viewAchiveList');
+     //resource controller comment
+     Route::resource('/comment','commentController');
+     // route to show form comment
+     Route::get('/formcommennt{id}','commentController@showForm')->name('showForm');
+     // route for viewdetailcomment
+     Route::get('/viewdetailcomment{id}','commentController@comment')->name('comment');
+     // route to add comment
+    Route::post('/add{id}','commentController@addComment')->name('addComment');
 
-// route to followUp
-Route::get('/followUp{id}','userController@followUp')->name('followUp');
-// route to achive
-Route::get('/achive{id}','userController@achive')->name('achive');
-// route to viewFollowUpList
-Route::get('/viewFollowUpList','StudentController@viewFollowUpList')->name('viewFollowUpList');
-// route to viewAchiveList
-Route::get('/viewAchiveList','StudentController@viewAchiveList')->name('viewAchiveList');
+});
+
+

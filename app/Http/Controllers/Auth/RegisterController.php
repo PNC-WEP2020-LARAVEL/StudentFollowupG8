@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\AuthServiceProvider;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -29,8 +34,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    protected $redirectTo = RouteServiceProvider::LOGIN;
+     
     /**
      * Create a new controller instance.
      *
@@ -38,7 +43,12 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        if(Auth::check() && Auth::user()->role->id == 1){
+            $this -> redirectTo = route('admin.dashboard');
+        }else {
+            $this -> redirectTo = route('author.dashboard');
+        }
+        $this->middleware('guest')->except('logout');;
     }
 
     /**
@@ -50,7 +60,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-           
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,15 +77,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
+            
+            return User::create([
+            'role_id' => 2,
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'address' => $data['address'],
             'email' => $data['email'],
             'position' => $data['position'],
             'password' => Hash::make($data['password']),
-        ]);
-        return $user;
+            ]);
     }
 }
-
-
