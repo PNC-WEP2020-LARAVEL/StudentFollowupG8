@@ -63,7 +63,7 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
     Route::post('/add{id}','commentController@addComment')->name('addComment');
     //route author control the student
     Route::get('/tutorcontrol','StudentController@tutorMentorStudents')->name('tutorControlStudents');
-
-});
+    
+}); 
 
 
