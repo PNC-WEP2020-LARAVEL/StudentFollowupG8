@@ -60,9 +60,10 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
-
+        $comment= Comment::find($id);
+        return view('admin.comment.formEditComment', compact('comment')); 
+    }   
+    
     /**
      * Update the specified resource in storage.
      *
@@ -72,7 +73,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find(auth::id());
+        $comment = Comment::find($id);
+        if(auth()->user()->id==$comment->user_id){  
+            $comment->comment = $request->get('comment');
+            $comment->save();
+        }
+        return redirect('admin/viewFollowUpList');
     }
 
     /**
@@ -83,7 +90,11 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        if(auth()->user()->id==$comment->user_id){
+            $comment->delete();
+        }
+        return back();
     }
     //view specific comments.
     public function comment($id)
